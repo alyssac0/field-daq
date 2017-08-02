@@ -10,7 +10,12 @@ function update()  {
 }
 
 function loadGalil()   {
-  mjsonrpc_db_get_values(["/Equipment/GalilFermi/Monitors/Positions","/Equipment/GalilFermi/Monitors/Velocities","/Equipment/GalilFermi/Monitors/Control Voltages","/Equipment/GalilFermi/Monitors/Analogs","/Equipment/GalilFermi/Monitors/Limit Switches Forward","/Equipment/GalilFermi/Monitors/Limit Switches Reverse","/Equipment/GalilFermi/Monitors/Motor Status"]).then(function(rpc) {
+  mjsonrpc_db_get_values(["/Equipment/GalilFermi/Monitors/Positions","/Equipment/GalilFermi/Monitors/Velocities","/Equipment/GalilFermi/Monitors/Control Voltages","/Equipment/GalilFermi/Monitors/Analogs","/Equipment/GalilFermi/Monitors/Limit Switches Forward","/Equipment/GalilFermi/Monitors/Limit Switches Reverse","/Equipment/GalilFermi/Monitors/Motor Status","/Shared/Variables/Trolley/Position"]).then(function(rpc) {
+
+      var Pds= String(rpc.result.data[7]);
+      Pds = Pds.split(',');
+      document.getElementById("PDA").innerHTML = Pds[0];
+        
       var Ps= String(rpc.result.data[0]);
       Ps = Ps.split(',');
       document.getElementById("PA").innerHTML = Ps[0];
